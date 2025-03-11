@@ -478,4 +478,10 @@ export default {
   DYN_MACRO_PLAY2: 0x7c57,
   FN_MO13: 0x7c77,
   FN_MO23: 0x7c78,
+  
+  DIAL_L:  0x7fb2,
+  DIAL_BUT: 0x7fb1,
+  DIAL_R: 0x7fb3,
+  DIAL_LC: 0x7fb4,
+  DIAL_RC: 0x7fb5,
 };

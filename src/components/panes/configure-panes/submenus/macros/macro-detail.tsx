@@ -93,7 +93,7 @@ type Props = {
 };
 
 const printBytesUsed = (bytesUsed: number, bufferSize: number) => {
-  const units = ['Bytes', 'kB', 'MB', 'GB'];
+  const units = ['字节', 'kB', 'MB', 'GB'];
   const scale = Math.floor(Math.log10(bufferSize) / 3);
   const suffix = units[scale];
   const denominator = scale === 0 ? 1 : Math.pow(1000, scale);
@@ -102,7 +102,7 @@ const printBytesUsed = (bytesUsed: number, bufferSize: number) => {
 
   return `${convertedBytesUsed.toFixed(scale)} / ${convertedBufferSize.toFixed(
     scale,
-  )} ${suffix} space used`;
+  )} ${suffix} 已使用空间`;
 };
 
 const BufferSizeUsage = () => {

@@ -14,10 +14,10 @@ const ExternalLinkContainer = styled.span`
 
 export const ExternalLinks = () => (
   <ExternalLinkContainer>
-    <a href="https://caniusevia.com/" target="_blank">
+    <a href="https://jlkb.jlkb.top/" target="_blank">
       <CategoryIconContainer>
         <VIALogo height="25px" fill="currentColor" />
-        <CategoryMenuTooltip>Firmware + Docs</CategoryMenuTooltip>
+        <CategoryMenuTooltip>JLKB</CategoryMenuTooltip>
       </CategoryIconContainer>
     </a>
     <a href="https://discord.gg/NStTR5YaPB" target="_blank">

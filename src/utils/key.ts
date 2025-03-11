@@ -390,7 +390,7 @@ function buildLayerMenu(): IKeycodeMenu {
 
   const menu: IKeycodeMenu = {
     id: 'layers',
-    label: 'Layers',
+    label: '换层',
     width: 'label',
     keycodes: [
       {
@@ -483,9 +483,9 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
   return [
     {
       id: 'basic',
-      label: 'Basic',
+      label: '基础',
       keycodes: [
-        {name: '', code: 'KC_NO', title: 'Nothing'},
+        {name: '无', code: 'KC_NO', title: 'Nothing'},
         {name: '▽', code: 'KC_TRNS', title: 'Pass-through'},
         // TODO: remove "shortName" when multiline keycap labels are working
         {name: 'Esc', code: 'KC_ESC', keys: 'esc'},
@@ -638,7 +638,7 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
     },
     {
       id: 'wt_lighting',
-      label: 'Lighting',
+      label: '灯光',
       width: 'label',
       keycodes: [
         {
@@ -729,7 +729,7 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
     },
     {
       id: 'media',
-      label: 'Media',
+      label: '媒体',
       width: 'label',
       keycodes: [
         {name: 'Vol -', code: 'KC_VOLD', title: 'Volume Down'},
@@ -747,14 +747,14 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
     },
     {
       id: 'macro',
-      label: 'Macro',
+      label: '宏',
       width: 'label',
       keycodes: generateMacros(numMacros)
     },
     buildLayerMenu(),
     {
       id: 'special',
-      label: 'Special',
+      label: '特殊',
       width: 'label',
       keycodes: [
         {name: '~', code: 'S(KC_GRV)', keys: '`', title: 'Shift + `'},
@@ -927,10 +927,22 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
         {name: 'Music Mode', code: 'MU_MOD'},
       ],
     },
+    {
+      id: 'dial',
+      label: '滚轮',
+      width: 'label',
+      keycodes: [
+        {name: '滚轮   反转', code: 'DIAL_L'},
+        {name: '滚轮   按下', code: 'DIAL_BUT'},
+        {name: '滚轮   顺转', code: 'DIAL_R'},
+        {name: '滚轮   LC', code: 'DIAL_LC'},
+        {name: '滚轮   RC', code: 'DIAL_RC'},
+      ],
+    },
     /* These are for controlling the original backlighting and bottom RGB. */
     {
       id: 'qmk_lighting',
-      label: 'Lighting',
+      label: '灯光',
       width: 'label',
       keycodes: [
         {name: 'BL Toggle', code: 'BL_TOGG'},
@@ -967,7 +979,7 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
     */
     {
       id: 'custom',
-      label: 'Custom',
+      label: '自定义',
       width: 'label',
       keycodes: [
         {name: 'CUSTOM(0)', code: 'CUSTOM(0)', title: 'Custom Keycode 0'},
@@ -995,7 +1007,7 @@ export const categoriesForKeycodeModule = (
   keycodeModule: BuiltInKeycodeModule | 'default',
 ) =>
   ({
-    default: ['basic', 'media', 'macro', 'layers', 'special'],
+    default: ['basic', 'media', 'macro', 'layers', 'special', 'dial'],
     [BuiltInKeycodeModule.WTLighting]: ['wt_lighting'],
     [BuiltInKeycodeModule.QMKLighting]: ['qmk_lighting'],
   }[keycodeModule]);
