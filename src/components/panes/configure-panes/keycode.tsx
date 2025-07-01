@@ -206,8 +206,7 @@ export const KeycodePane: FC = () => {
   const renderMacroError = () => {
     return (
       <ErrorMessage>
-        Your current firmware does not support macros. Install the latest
-        firmware for your device.
+        您当前的固件不支持旋钮。更新您的设备的固件来支持。
       </ErrorMessage>
     );
   };
