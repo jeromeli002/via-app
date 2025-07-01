@@ -268,9 +268,7 @@ export const DesignTab: FC = () => {
           localStorage.setItem('designWarningSeen', `${designWarningSeen}`);
         }}
       >
-        This feature is intended for development purposes. If your keyboard is
-        not recognized automatically by VIA, please contact your keyboard's
-        manufacturer or vendor.
+        此功能用于开发目的。如果你的键盘法自动被识别，请联系您的键盘制造商或供应商。
       </MessageDialog>
       <SinglePaneFlexCell ref={flexRef}>
         {!definition && (
@@ -320,7 +318,7 @@ export const DesignTab: FC = () => {
                     );
                   }}
                 >
-                  Load
+                  载入
                 </AccentUploadButton>
               </Detail>
             </ControlRow>

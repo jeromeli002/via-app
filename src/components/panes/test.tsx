@@ -141,7 +141,7 @@ export const Test: FC = () => {
               <Label>重置键盘</Label>
               <Detail>
                 <AccentButton onClick={testContextObj.clearTestKeys}>
-                  Reset
+                  重置
                 </AccentButton>
               </Detail>
             </ControlRow>
