@@ -20,10 +20,16 @@ export const ExternalLinks = () => (
         <CategoryMenuTooltip>JLKB</CategoryMenuTooltip>
       </CategoryIconContainer>
     </a>
-    <a href="https://discord.gg/NStTR5YaPB" target="_blank">
+    <a href="https://lhfha.x3322.net:8100/" target="_blank">
+      <CategoryIconContainer>
+        <VIALogo height="25px" fill="currentColor" />
+        <CategoryMenuTooltip>备用地址</CategoryMenuTooltip>
+      </CategoryIconContainer>
+    </a>
+    <a href="https://vial.jlkb.top/" target="_blank">
       <CategoryIconContainer>
         <FontAwesomeIcon size={'xl'} icon={faDiscord} />
-        <CategoryMenuTooltip>Discord</CategoryMenuTooltip>
+        <CategoryMenuTooltip>Via-JL</CategoryMenuTooltip>
       </CategoryIconContainer>
     </a>
     <a href="https://github.com/the-via/app" target="_blank">

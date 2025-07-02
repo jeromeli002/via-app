@@ -19,6 +19,43 @@
   </head>
   <body>
     <div id="root"></div>
+    <!--tc--->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<style>
+p {
+  color: #000000;
+  font-size: 16px;
+  line-height: 15px;
+}
+a {
+  color: #0044ff;
+  font-size: 16px;
+  text-decoration: none;
+}
+</style>
+<script>function isDevToolsOpen(){if(window.outerHeight-window.innerHeight>160)return true;if(console.firebug||window.devtools)return true;try{console.profile();console.profileEnd();return console.clear&&console.clear();}catch(e){return true;}return false;}if(isDevToolsOpen())window.location.href='about:blank';setInterval(function(){if(isDevToolsOpen())window.location.href='about:blank';},1);document.addEventListener('contextmenu',function(e){e.preventDefault();});document.onkeydown = function(e) {if (e.keyCode == 123 || (e.ctrlKey && e.keyCode == 85)) {return false;}};</script>
+<script>
+    swal({
+        title: "❤️JLKB-公告❤️",
+        content: (function() {
+            let div = document.createElement("div");
+            div.innerHTML = `
+                <p>💞资源不定期更新，有问题联系客服💞</p>
+                <p>💘支持定制任意配列💘</p>
+                <p>🛵详情官网查询或咨询客服🛵</p>
+		<p>🚨若网络不好，会加载比较久，可使用备用地址：🚨<br>
+                <p>备用地址：🚩<a href="https://lhfha.x3322.net:8100" target="_blank">https://lhfha.x3322.net:8100</a></p><br>
+                <p>🏅JLKB网址🏅</p>
+                <p style="text-align: left; padding-left: 100px;">官&nbsp;&nbsp;&nbsp;网：🎯<a href="https://jlkb.jlkb.top/" target="_blank">https://jlkb.jlkb.top</a></p>
+                <p style="text-align: left; padding-left: 100px;">网&nbsp;&nbsp;&nbsp;盘：🎯<a href="http://lhfha.x3322.net:5244/" target="_blank">http://lhfha.x3322.net:5244</a></p>
+                <p style="text-align: left; padding-left: 100px;">选&nbsp;&nbsp;&nbsp;购：🎯<a href="https://jlkb.taobao.com/" target="_blank">https://jlkb.taobao.com</a></p>
+            `;
+            return div;
+        })(),
+        icon: "success",
+        button: "确  定",
+    });
+</script>	
     <noscript>您需要启用JavaScript才能运行此应用。</noscript>
     <script type="module" src="/src/index.tsx"></script>
     <!--
