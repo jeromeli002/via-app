@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import imgSrc from 'assets/images/chippy_600.png';
 import {Theme} from 'src/utils/themes';
 import {getDarkenedColor} from 'src/utils/color-math';
@@ -6,16 +6,19 @@ import {getSelectedTheme} from 'src/store/settingsSlice';
 import {useAppSelector} from 'src/store/hooks';
 
 const defaultChippy = {
-  width: 450,
-  height: 450,
+  width: 450, // 初始值，实际大小会根据需求调整
+  height: 450, // 初始值，实际大小会根据需求调整
   src: imgSrc,
 };
 
 const LoaderContainer = styled.div`
   width: 100%;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* 添加负的 margin-top 来整体上移 */
+  margin-top: -400px; /* 你可以根据需要调整这个值 */
 `;
 
 const CircleContainer = styled.div<{
@@ -26,8 +29,8 @@ const CircleContainer = styled.div<{
 }>`
   border-radius: 50%;
   background-color: #70707000;
-  height: 450px;
-  width: 450px;
+  height: ${(props) => props.$containerHeight}px; /* 使用传入的计算高度 */
+  width: ${(props) => props.$containerWidth}px; /* 使用传入的计算宽度 */
   position: relative;
   overflow: hidden;
   box-sizing: border-box;
@@ -59,6 +62,63 @@ const CircleContainer = styled.div<{
   }
 `;
 
+// 定义文字渐变动画
+const gradientAnimation = keyframes`
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+`;
+
+// WelcomeText 样式调整为链接样式，并复用渐变动画
+const WelcomeLink = styled.a`
+  font-size: 3.5em; /* 第一行文字大小 */
+  font-weight: bold;
+  margin-top: 1px; /* 与SVG的间距 */
+  background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${gradientAnimation} 5s ease infinite;
+  white-space: nowrap; /* 避免换行 */
+  text-decoration: none; /* 移除下划线 */
+  cursor: pointer;
+
+  &:hover {
+    filter: brightness(1.2); /* 鼠标悬停时增加亮度，提供交互反馈 */
+  }
+`;
+
+const SearchingText = styled.p`
+  font-size: 1.5em; /* 第二行文字大小 */
+  margin-top: 1px;
+  color: #555; /* 字体颜色，可根据主题调整 */
+  white-space: nowrap; /* 避免换行 */
+`;
+
+const HintText = styled.p`
+  font-size: 1.2em; /* 第三行文字大小 */
+  margin-top: 1px;
+  color: #777; /* 字体颜色，可根据主题调整 */
+  text-align: center;
+  /* max-width: 400px; 移除宽度限制 */
+`;
+
+const GradientLink = styled.a`
+  font-weight: bold; /* 让链接文字也粗一点，与渐变效果更搭 */
+  text-decoration: none; /* 移除下划线 */
+  background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: ${gradientAnimation} 5s ease infinite;
+  cursor: pointer;
+  white-space: nowrap; /* 避免换行 */
+
+  &:hover {
+    filter: brightness(1.2); /* 鼠标悬停时增加亮度，提供交互反馈 */
+  }
+`;
+
 type Props = {
   progress: number | null;
   width?: number;
@@ -66,8 +126,8 @@ type Props = {
   theme: Theme;
 };
 
-const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
-  const {theme} = props;
+const SvgComponent: React.FC<any & {theme: Theme; width: number; height: number}> = (props) => {
+  const {theme, width, height} = props;
 
   const darkAccent = getDarkenedColor(theme.accent.c, 0.8);
   const colorMap = {
@@ -85,6 +145,8 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
       x={0}
       y={0}
       viewBox="0 0 600 600"
+      width={width} // 动态设置SVG宽度
+      height={height} // 动态设置SVG高度
       style={{
         enableBackground: 'new 0 0 600 600',
       }}
@@ -106,12 +168,15 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
 };
 
 export default function ChippyLoader(props: Props) {
-  const width = props.width || defaultChippy.width;
-  const height = props.width || defaultChippy.height;
-  const containerPadding = width * 0.25;
+  // SVG 缩小到 50%
+  const svgWidth = (props.width || defaultChippy.width) * 0.5;
+  const svgHeight = (props.height || defaultChippy.height) * 0.5;
+
+  // CircleContainer 的尺寸需要根据 SVG 尺寸和 padding 重新计算
+  const containerPadding = svgWidth * 0.25; // padding 保持与 SVG 尺寸的比例
   const [containerHeight, containerWidth] = [
-    height + containerPadding * 2,
-    width + containerPadding * 2,
+    svgHeight + containerPadding * 2,
+    svgWidth + containerPadding * 2,
   ];
   const selectedTheme = useAppSelector(getSelectedTheme);
 
@@ -126,12 +191,23 @@ export default function ChippyLoader(props: Props) {
         <div
           style={{
             zIndex: 1,
-            width: width,
+            width: svgWidth, // div 的宽度与 SVG 宽度一致
           }}
         >
-          <SvgComponent theme={props.theme} />
+          <SvgComponent theme={props.theme} width={svgWidth} height={svgHeight} />
         </div>
       </CircleContainer>
+      {/* 使用 WelcomeLink 组件代替 WelcomeText，并添加 href 属性 */}
+      <WelcomeLink href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer">
+        欢迎使用JLKB驱动
+      </WelcomeLink><br /><br /><br /><br />
+      <SearchingText>设备搜索中······</SearchingText>
+      <HintText>
+        如果长时间没有响应，检测设备是否正确连接配对或
+        <GradientLink href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer">
+          购买支持的外设
+        </GradientLink>
+      </HintText>
     </LoaderContainer>
   );
 }
