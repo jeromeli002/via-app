@@ -88,13 +88,6 @@ const WelcomeLink = styled.a`
   }
 `;
 
-const SearchingText = styled.p`
-  font-size: 1.5em; /* 第二行文字大小 */
-  margin-top: 1px;
-  color: #555; /* 字体颜色，可根据主题调整 */
-  white-space: nowrap; /* 避免换行 */
-`;
-
 const HintText = styled.p`
   font-size: 1.2em; /* 第三行文字大小 */
   margin-top: 1px;
@@ -103,19 +96,19 @@ const HintText = styled.p`
   /* max-width: 400px; 移除宽度限制 */
 `;
 
-const GradientLink = styled.a`
-  font-weight: bold; /* 让链接文字也粗一点，与渐变效果更搭 */
+// 修改后的 SupportLink，移除下划线，悬停时文字外发光
+const SupportLink = styled.a`
+  font-weight: bold; /* 让链接文字也粗一点 */
   text-decoration: none; /* 移除下划线 */
-  background: linear-gradient(90deg, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: ${gradientAnimation} 5s ease infinite;
+  color: #007bff; /* 使用一个与其他文字不同的蓝色，你可以根据喜好调整 */
   cursor: pointer;
   white-space: nowrap; /* 避免换行 */
+  transition: text-shadow 0.3s ease-in-out; /* 添加过渡效果，让发光更平滑 */
 
   &:hover {
-    filter: brightness(1.2); /* 鼠标悬停时增加亮度，提供交互反馈 */
+    text-shadow: 0 0 8px #00ddffff, 0 0 15px #00ddffff; /* 鼠标悬停时添加外发光效果 */
+    /* 0 0 8px #00ddffff：第一个发光层，颜色与文字颜色相同，模糊半径8px
+       0 0 15px #00ddffff：第二个发光层，颜色与文字颜色相同，模糊半径15px，提供更强的发光感 */
   }
 `;
 
@@ -201,12 +194,11 @@ export default function ChippyLoader(props: Props) {
       <WelcomeLink href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer">
         欢迎使用JLKB驱动
       </WelcomeLink><br /><br /><br /><br />
-      <SearchingText>设备搜索中······</SearchingText>
       <HintText>
-        如果长时间没有响应，检测设备是否正确连接配对或
-        <GradientLink href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer">
+        如果长时间没有响应，请检测设备是否正确连接配对刷新或
+        <SupportLink href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer">
           购买支持的外设
-        </GradientLink>
+        </SupportLink>
       </HintText>
     </LoaderContainer>
   );

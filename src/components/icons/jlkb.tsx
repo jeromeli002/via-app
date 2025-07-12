@@ -1,6 +1,6 @@
 import {SVGProps} from 'react';
 
-export const VIALogo = (props: SVGProps<SVGSVGElement>) => {
+export const JLKB = (props: SVGProps<SVGSVGElement>) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -19,7 +19,7 @@ export const VIALogo = (props: SVGProps<SVGSVGElement>) => {
         <g id="Layer_2-2" data-name="Layer 2">
           {/* 将文字放置在视图框的中心附近 */}
           {/* x 和 y 坐标需要根据实际字体和字体大小进行微调，以达到最佳视觉效果 */}
-          <text x="20" y="250" className="cls-1">官网</text>
+          <text x="20" y="250" className="cls-1">备用</text>
         </g>
       </g>
     </svg>

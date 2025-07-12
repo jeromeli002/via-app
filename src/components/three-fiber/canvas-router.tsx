@@ -163,32 +163,59 @@ export const NonSuspenseCanvasRouter = () => {
               -19,
             ]}
           >
-            {showAuthorizeButton ? (
-              !selectedDefinition ? (
-                <AccentButtonLarge
-                  onClick={() => dispatch(reloadConnectedDevices())}
-                  style={{width: 'max-content'}}
-                >
-                  Authorize device
-                  <FontAwesomeIcon
-                    style={{marginLeft: '10px'}}
-                    icon={faUnlock}
-                  />
-                </AccentButtonLarge>
-              ) : (
-                <>
-                  <div
-                    style={{
-                      textAlign: 'center',
-                      color: 'var(--color_accent)',
-                      fontSize: 60,
-                    }}
-                  >
-                    <FontAwesomeIcon spinPulse icon={faSpinner} />
-                  </div>
-                </>
-              )
-            ) : null}
+            {/* 新增的容器 div，用于控制文本宽度和样式 */}
+            <div
+              style={{
+                width: '80vw', // 使用视口宽度，使其响应式
+                maxWidth: '1920px', // 设置最大宽度，防止在大屏幕上文本过长
+                margin: 'auto', // 居中显示
+                padding: '20px',
+                borderRadius: '10px', // 圆角边框
+                display: 'flex', // 使用 Flexbox 布局
+                flexDirection: 'column', // 垂直排列子元素
+                alignItems: 'center', // 水平居中对齐子元素
+                justifyContent: 'center', // 垂直居中对齐子元素
+                textAlign: 'center', // 文本居中
+              }}
+            >
+              {showAuthorizeButton ? (
+                !selectedDefinition ? (
+                  <>
+                    <div style={{ marginBottom: '20px' }}>
+                      <p style={{ margin: '0 0 5px 0' }}>
+                        <a href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '3em', color: '#33998ae3', textDecoration: 'none' }}><br /><br />欢迎使用JLKB驱动</a>
+                      </p>
+                      <p style={{ margin: '0' }}>
+                        <span style={{fontSize: '1.5em', color: '#626262e3' }}><br /><br />如果长时间未响应，请检查设备是否正确连接配对刷新或</span>
+                        <a href="https://jlkb.taobao.com/" target="_blank" rel="noopener noreferrer" style={{ fontSize: '1.5em', color: '#33998ae3', textDecoration: 'none', marginLeft: '5px' }}>购买支持的设备</a><br />
+                      </p>
+                    </div>
+                    <AccentButtonLarge
+                      onClick={() => dispatch(reloadConnectedDevices())}
+                      style={{ width: 'max-content' }}
+                    >
+                      连接JLKB设备
+                      <FontAwesomeIcon
+                        style={{ marginLeft: '10px' }}
+                        icon={faUnlock}
+                      />
+                    </AccentButtonLarge>
+                  </>
+                ) : (
+                  <>
+                    <div
+                      style={{
+                        textAlign: 'center',
+                        color: 'var(--color_accent)',
+                        fontSize: 60,
+                      }}
+                    >
+                      <FontAwesomeIcon spinPulse icon={faSpinner} />
+                    </div>
+                  </>
+                )
+              ) : null}
+            </div>
           </Html>
           <KeyboardGroup
             containerRef={containerRef}
